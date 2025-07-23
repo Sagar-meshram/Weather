@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "outDir": "dist-electron",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "baseUrl": ".",
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "main": ["electron/main.ts"]
+    }
+  },
+  "include": ["electron/**/*", "electron/electron.d.ts"]
+}
