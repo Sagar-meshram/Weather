@@ -4,7 +4,7 @@ import path from "node:path"
 import { ScreenshotHelper } from "./ScreenshotHelper"
 import { IProcessingHelperDeps } from "./main"
 import * as axios from "axios"
-import { app, BrowserWindow, dialog } from "electron"
+import { app, BrowserWindow } from "electron"
 import { OpenAI } from "openai"
 import { configHelper } from "./ConfigHelper"
 import Anthropic from '@anthropic-ai/sdk';
@@ -136,7 +136,7 @@ export class ProcessingHelper {
     const maxAttempts = 50 // 5 seconds total
 
     while (attempts < maxAttempts) {
-      const isInitialized = await mainWindow.webContents.executeJavaScript(
+      const isInitialized = await (mainWindow.webContents as any).executeJavaScript(
         "window.__IS_INITIALIZED__"
       )
       if (isInitialized) return
@@ -172,7 +172,7 @@ export class ProcessingHelper {
       if (mainWindow) {
         try {
           await this.waitForInitialization(mainWindow)
-          const language = await mainWindow.webContents.executeJavaScript(
+          const language = await (mainWindow.webContents as any).executeJavaScript(
             "window.__LANGUAGE__"
           )
 
